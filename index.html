@@ -9,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: #001f3f; /* Dark blue */
+            background: #001f3f;
             overflow-x: hidden;
             font-family: 'Arial', sans-serif;
         }
@@ -27,7 +27,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 20px;
             text-align: center;
@@ -48,7 +48,6 @@
         .photo-section {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             gap: 30px;
             margin: 50px auto;
@@ -125,7 +124,7 @@
         <h1>🎉 Happy Birthday Snehaa! 🎉</h1>
         <h2>Many many happy returns of the day & lots of love💖✨</h2>
         <p>From Santanu </p>
-        <button onclick="closePopup()">Let's Celebrate!</button>
+        <button id="celebrateButton">Let's Celebrate!</button>
     </div>
 
     <div class="photo-section">
@@ -146,10 +145,15 @@
         <button onclick="cutCake()"> -> Cut Cake 🍰</button>
     </div>
 
-    <!-- Sparkles Script -->
     <script>
+        const popup = document.getElementById('birthdayPopup');
+        const button = document.getElementById('celebrateButton');
+
+        button.addEventListener('click', closePopup);
+        button.addEventListener('touchend', closePopup);
+
         function closePopup() {
-            document.getElementById('birthdayPopup').style.display = 'none';
+            popup.style.display = 'none';
         }
 
         function cutCake() {
@@ -218,18 +222,16 @@
         });
 
         document.addEventListener('touchmove', (e) => {
-            e.preventDefault();
             Array.from(e.touches).forEach(touch => {
                 addSparkles(touch.clientX, touch.clientY);
             });
-        }, { passive: false });
+        }, { passive: true });
 
         document.addEventListener('touchstart', (e) => {
-            e.preventDefault();
             Array.from(e.touches).forEach(touch => {
                 addSparkles(touch.clientX, touch.clientY);
             });
-        }, { passive: false });
+        }, { passive: true });
 
         animate();
     </script>
